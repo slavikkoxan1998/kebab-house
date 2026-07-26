@@ -676,7 +676,7 @@
                 <a href="https://www.google.com/maps/place/Kebab+House+Kun%C5%A1t%C3%A1t/@49.5069965,16.5171469,17z/data=!4m6!3m5!1s0x47127d005747b541:0xb466f47d19efcb1a!8m2!3d49.5069965!4d16.5185826!16s%2Fg%2F11xz310vkf" target="_blank" class="text-3xl hover:text-[#ff8c42] transition-colors">📍</a>
             </div>
             <p class="text-xs text-[#a89a96] uppercase tracking-widest text-center md:text-right">
-                © <script>document.write(new Date().getFullYear())</script> František Burian. Všechna práva vyhrazena.
+                © <script>document.write(new Date().getFullYear())</script> Kebab-House. Všechna práva vyhrazena.
             </p>
         </div>
     </footer>
@@ -690,7 +690,7 @@
 
         // --- SPA Routing Logic (Fixed event prevention) ---
         function navigateTo(pageId, event) {
-            if(event) event.preventDefault(); // Запобігає стандартному стрибку якоря
+            if(event) event.preventDefault(); 
             toggleDrawer(); // Close menu if open
             document.getElementById('main-page').classList.remove('active');
             document.querySelectorAll('.detail-page').forEach(p => p.classList.remove('active'));
