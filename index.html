@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Kebab House Kunštát — Döner, Dürüm, Falafel | František Burian</title>
+    <meta name="title" content="Kebab House Kunštát — Döner, Dürüm, Falafel | František Burian">
+    <meta name="description" content="Kebab House Kunštát (František Burian). Autentický döner kebab, dürüm, falafel a talíře. Čerstvé maso z rožně každý den. Otevřeno 7 dní v týdnu na Náměstí Míru v Kunštátě.">
+    <meta name="keywords" content="kebab Kunštát, döner Kunštát, dürüm Kunštát, falafel Kunštát, oběd Kunštát, rychlé občerstvení Kunštát, restaurace Kunštát, František Burian, turecké jídlo Kunštát">
+    <meta name="author" content="Kebab House Kunštát">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.kebabhousekunstat.cz/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="restaurant">
+    <meta property="og:url" content="https://www.kebabhousekunstat.cz/">
+    <meta property="og:title" content="Kebab House Kunštát — Chuť Orientu v srdci Kunštátu">
+    <meta property="og:description" content="Čerstvé maso z rožně, domácí omáčky a křupavý falafel. Otevřeno 7 dní v týdnu. Náměstí Míru 27, Kunštát.">
+    <meta property="og:image" content="images/hero_kebab.png">
+    <meta property="og:locale" content="cs_CZ">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Kebab House Kunštát — Chuť Orientu v srdci Kunštátu">
+    <meta property="twitter:description" content="Čerstvé maso z rožně, domácí omáčky a křupavý falafel. Otevřeno 7 dní v týdnu.">
+    <meta property="twitter:image" content="images/hero_kebab.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Kebab House Kunštát",
+      "image": "images/hero_kebab.png",
+      "url": "https://www.kebabhousekunstat.cz/",
+      "telephone": "+420704696170",
+      "priceRange": "CZK",
+      "servesCuisine": ["Turkish", "Kebab", "Fast Food"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Náměstí Míru 27",
+        "addressLocality": "Kunštát",
+        "postalCode": "679 72",
+        "addressCountry": "CZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.5069965,
+        "longitude": 16.5185826
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+          "opens": "10:30",
+          "closes": "21:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Friday", "Saturday"],
+          "opens": "10:30",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "11:00",
+          "closes": "21:00"
+        }
+      ]
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0606;
+            --card: #140d0c;
+            --text: #fdf8f5;
+            --muted: #a89a96;
+            --border: #2a1a18;
+            --neon-red: #e8412a;
+            --neon-ember: #ff8c42;
+        }
+        * { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Barlow', sans-serif;
+            background-image: 
+                radial-gradient(ellipse at top, rgba(232, 65, 42, 0.15), transparent 55%),
+                radial-gradient(ellipse at bottom, rgba(255, 140, 66, 0.1), transparent 60%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.02em;
+        }
+        .text-gradient-neon {
+            background: linear-gradient(135deg, #ff8c42, #e8412a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .glow-red { box-shadow: 0 0 20px rgba(232, 65, 42, 0.5), 0 0 40px rgba(232, 65, 42, 0.25); }
+        .text-glow-red { text-shadow: 0 0 12px rgba(232, 65, 42, 0.85), 0 0 30px rgba(232, 65, 42, 0.55), 4px 4px 15px rgba(0, 0, 0, 0.9); }
+        .neon-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e8412a, transparent);
+            box-shadow: 0 0 12px rgba(232, 65, 42, 0.7);
+        }
+        .border-glow {
+            border: 1px solid rgba(232, 65, 42, 0.5);
+            box-shadow: 0 0 18px rgba(232, 65, 42, 0.3), inset 0 0 18px rgba(232, 65, 42, 0.05);
+        }
+
+        /* Animations */
+        @keyframes flicker { 0%, 100% { opacity: 1; } 45% { opacity: 0.85; } 50% { opacity: 0.6; } 55% { opacity: 0.9; } }
+        @keyframes pulse-glow { 
+            0%, 100% { text-shadow: 0 0 12px rgba(232, 65, 42, 0.85), 0 0 30px rgba(232, 65, 42, 0.5), 4px 4px 15px rgba(0, 0, 0, 0.9); } 
+            50% { text-shadow: 0 0 20px rgba(232, 65, 42, 1), 0 0 50px rgba(232, 65, 42, 0.8), 4px 4px 20px rgba(0, 0, 0, 1); } 
+        }
+        @keyframes scan-line { 0% { transform: translateY(-100%); } 100% { transform: translateY(2000%); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        
+        .animate-flicker { animation: flicker 4s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .animate-scan-line { animation: scan-line 8s linear infinite; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        
+        /* Slider Animations */
+        @keyframes crossfade {
+            0%, 25% { opacity: 1; }
+            33%, 92% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .slide-1 { animation: crossfade 15s linear infinite 0s; }
+        .slide-2 { animation: crossfade 15s linear infinite 5s; opacity: 0; }
+        .slide-3 { animation: crossfade 15s linear infinite 10s; opacity: 0; }
+
+        @keyframes float-up {
+            0% { transform: translateY(100px) translateX(0) scale(1); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-400px) translateX(30px) scale(0.5); opacity: 0; }
+        }
+        .spark {
+            position: absolute;
+            bottom: 0;
+            background: #ff8c42;
+            border-radius: 50%;
+            filter: blur(1px);
+            box-shadow: 0 0 10px #ff8c42, 0 0 20px #e8412a;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Gallery Images */
+        .gallery-img {
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        /* FAQ Accordion */
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.5s ease; }
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.5rem; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+        .faq-icon { transition: transform 0.3s ease; }
+
+        /* 3D Flip Card Menu Styles */
+        .flip-card { perspective: 1000px; height: 380px; }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .flip-card:hover .flip-card-inner, .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background-color: var(--card);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        /* SPA Page Transition */
+        .page { display: none; }
+        .page.active { display: block; }
+        
+        /* Side Menu Drawer */
+        .drawer { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+        .drawer.open { transform: translateX(0); }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Navigation -->
+    <header id="navbar" class="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-black/50 border-b border-[#2a1a18]/50 transition-all duration-300">
+        <div class="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
+            <a href="#" onclick="goHome(null, event)" class="flex items-center gap-2">
+                <span class="text-2xl">🔥</span>
+                <span class="font-display text-2xl tracking-widest text-glow-red animate-flicker">KEBAB HOUSE</span>
+            </a>
+            
+            <!-- Burger Button -->
+            <button id="burger-btn" class="flex flex-col gap-1.5 p-2 z-50" onclick="toggleDrawer()">
+                <span class="block w-8 h-0.5 bg-[#ff8c42] transition-all"></span>
+                <span class="block w-8 h-0.5 bg-[#ff8c42] transition-all"></span>
+                <span class="block w-8 h-0.5 bg-[#ff8c42] transition-all"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Side Drawer Menu -->
+    <div id="overlay" class="fixed inset-0 bg-black/70 z-40 hidden" onclick="toggleDrawer()"></div>
+    <aside id="side-drawer" class="drawer fixed top-0 right-0 h-full w-full max-w-sm bg-[#0a0606] border-l border-[#2a1a18] z-50 overflow-y-auto">
+        <div class="p-8 pt-24">
+            <h3 class="font-display text-2xl text-[#ff8c42] tracking-widest mb-6 border-b border-[#2a1a18] pb-4">NAVIGACE</h3>
+            <nav class="flex flex-col gap-4 text-lg uppercase tracking-wider">
+                <a href="#" onclick="goHome(null, event)" class="hover:text-[#ff8c42] transition-colors font-bold text-[#ff8c42]">Domů</a>
+                <a href="#" onclick="goHome('about', event)" class="hover:text-[#ff8c42] transition-colors">O nás</a>
+                <a href="#" onclick="goHome('menu', event)" class="hover:text-[#ff8c42] transition-colors">Menu</a>
+                
+                <!-- Sub menu for Categories -->
+                <div class="pl-4 flex flex-col gap-3 text-base border-l border-[#2a1a18] ml-2">
+                    <a href="#" onclick="navigateTo('page-salat', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Salát</a>
+                    <a href="#" onclick="navigateTo('page-turecky-chleba', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Turecký chleba</a>
+                    <a href="#" onclick="navigateTo('page-tortilla-durum', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Tortilla Dürüm</a>
+                    <a href="#" onclick="navigateTo('page-maly-talir', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Malý talíř</a>
+                    <a href="#" onclick="navigateTo('page-velky-talir', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Velký talíř</a>
+                    <a href="#" onclick="navigateTo('page-doner-box', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Döner box</a>
+                    <a href="#" onclick="navigateTo('page-vegetarianske', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Vegetariánské</a>
+                    <a href="#" onclick="navigateTo('page-stripsy', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Stripsy</a>
+                </div>
+
+                <a href="#" onclick="navigateTo('page-team', event)" class="hover:text-[#ff8c42] transition-colors mt-2">Náš tým</a>
+                <a href="#" onclick="navigateTo('page-terrace', event)" class="hover:text-[#ff8c42] transition-colors">Naše terasa</a>
+                <a href="#" onclick="goHome('reviews', event)" class="hover:text-[#ff8c42] transition-colors">Hodnocení</a>
+                <a href="#" onclick="goHome('contact', event)" class="hover:text-[#ff8c42] transition-colors">Kontakt</a>
+                <a href="#" onclick="goHome('reservation', event)" class="text-[#ff8c42] mt-2 text-xl">Rezervovat stůl</a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- MAIN PAGE CONTENT -->
+    <div id="main-page" class="page active">
+        <main>
+        <!-- Hero Section -->
+        <section id="top" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0">
+                <img src="images/hero_kebab.png" alt="Grilovaný kebab na rožni" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/60"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0606] via-transparent to-[#0a0606]"></div>
+            </div>
+            
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#e8412a] to-transparent animate-scan-line opacity-40 pointer-events-none"></div>
+            <div class="absolute top-1/4 left-10 w-32 h-32 rounded-full bg-[#e8412a]/10 blur-3xl animate-float"></div>
+            <div class="absolute bottom-1/4 right-10 w-48 h-48 rounded-full bg-[#ff8c42]/10 blur-3xl animate-float" style="animation-delay: 2s;"></div>
+
+            <div class="relative z-10 text-center px-6">
+                <h1 class="text-6xl md:text-9xl font-normal leading-[0.9]">
+                    <span class="block text-[#e8412a] text-glow-red">CHUŤ</span>
+                    <span class="block text-[#e8412a] animate-pulse-glow">ORIENTU</span>
+                    <span class="block text-2xl md:text-4xl mt-4 text-[#a89a96] uppercase tracking-[0.2em]">v srdci Kunštátu</span>
+                </h1>
+                <div class="neon-line mt-8 mx-auto w-40 origin-center"></div>
+                <p class="mt-8 max-w-xl mx-auto text-lg text-[#a89a96]">
+                    Čerstvé maso z rožně, domácí omáčky, křupavý falafel a útulná zahrádka.
+                </p>
+                <div class="mt-10 flex flex-wrap justify-center gap-4">
+                    <button onclick="document.getElementById('menu').scrollIntoView()" class="px-8 py-3 rounded-full bg-gradient-to-r from-[#e8412a] to-[#ff8c42] text-white font-semibold uppercase tracking-wider hover:scale-105 hover:glow-red transition-all duration-300">Zobrazit menu</button>
+                    <button onclick="document.getElementById('reservation').scrollIntoView()" class="px-8 py-3 rounded-full border-2 border-[#e8412a]/60 text-white font-semibold uppercase tracking-wider hover:border-[#e8412a] hover:glow-red transition-all duration-300">Rezervovat stůl</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="relative py-24 px-6">
+            <div class="mx-auto max-w-7xl grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="relative">
+                        <div class="aspect-square rounded-2xl border-glow bg-gradient-to-br from-[#2a1a18] to-[#0a0606] flex items-center justify-center overflow-hidden group">
+                            <div class="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-700 bg-[url('images/hero_kebab.png')] bg-cover bg-center"></div>
+                        </div>
+                        <div class="absolute -bottom-5 -right-5 bg-[#e8412a] text-white p-4 rounded-xl shadow-lg border border-[#ff8c42]">
+                            <span class="block text-3xl font-bold">100%</span>
+                            <span class="text-xs uppercase">Čerstvé maso</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-6xl mb-4">Příběh <span class="text-gradient-neon">Kebab House</span></h2>
+                    <div class="neon-line w-32 mb-6"></div>
+                    <p class="text-[#a89a96] text-lg mb-4">
+                        Vítejte v Kebab House Kunštát! Už <strong class="text-[#ff8c42]">6 let</strong> pečeme maso na jednom grilu, abychom přinesli do Kunštátu skutečnou chuť Orientu.
+                    </p>
+                    <p class="text-[#a89a96] text-lg mb-8">
+                        Jsme tu pro vás <strong class="text-[#ff8c42]">7 dní v týdnu</strong>. Naším cílem je být tím jediným místem, kam se budete chtít vracet pro poctivé jídlo a skvělou atmosféru. Každý den připravujeme čerstvé těsto, omáčky i zeleninu.
+                    </p>
+                    <div class="flex gap-6">
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl">🌿</span>
+                            <div><p class="font-bold">Vege friendly</p><p class="text-xs text-[#a89a96]">Falafel & saláty</p></div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl">🚚</span>
+                            <div><p class="font-bold">Rychlý odběr</p><p class="text-xs text-[#a89a96]">Online objednávky</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="relative py-20 px-6 bg-black/30 border-y border-[#2a1a18]">
+            <div class="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div class="reveal">
+                    <h3 class="text-6xl md:text-8xl text-gradient-neon font-bold">6</h3>
+                    <p class="mt-2 text-[#a89a96] uppercase tracking-widest text-lg">let u jednoho grilu</p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.1s;">
+                    <h3 class="text-6xl md:text-8xl text-gradient-neon font-bold">7</h3>
+                    <p class="mt-2 text-[#a89a96] uppercase tracking-widest text-lg">dní v týdnu pro vás</p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <h3 class="text-6xl md:text-8xl text-gradient-neon font-bold">1</h3>
+                    <p class="mt-2 text-[#a89a96] uppercase tracking-widest text-lg">místo kam se vracíte</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="relative py-24 px-6">
+            <div class="mx-auto max-w-7xl">
+                <div class="text-center mb-14 reveal">
+                    <h2 class="text-5xl md:text-7xl">NAŠE <span class="text-gradient-neon">MENU</span></h2>
+                    <div class="neon-line mt-5 mx-auto w-32"></div>
+                    <p class="text-[#a89a96] mt-6">Najeďte kurzorem nebo klikněte na kartičku. Otočte ji a prozkoumejte detail kategorie.</p>
+                </div>
+                <div id="menu-content" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="relative py-24 px-6 bg-black/30 border-y border-[#2a1a18]">
+            <div class="mx-auto max-w-7xl">
+                <div class="text-center mb-14 reveal">
+                    <h2 class="text-5xl md:text-7xl">Z NAŠÍ <span class="text-gradient-neon">KUCHYNĚ</span></h2>
+                    <div class="neon-line mt-5 mx-auto w-32"></div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="reveal group relative overflow-hidden rounded-xl border-glow aspect-square gallery-img" style="background-image: url('images/turkish_bread_doner.png');">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 flex items-end p-4">
+                            <span class="text-lg uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-500">Döner Kebab</span>
+                        </div>
+                    </div>
+                    <div class="reveal group relative overflow-hidden rounded-xl border-glow aspect-square gallery-img" style="transition-delay: 0.1s; background-image: url('images/durum_wrap.png');">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 flex items-end p-4">
+                            <span class="text-lg uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-500">Dürüm</span>
+                        </div>
+                    </div>
+                    <div class="reveal group relative overflow-hidden rounded-xl border-glow aspect-square gallery-img" style="transition-delay: 0.2s; background-image: url('images/velky_talir.png');">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 flex items-end p-4">
+                            <span class="text-lg uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-500">Talíř</span>
+                        </div>
+                    </div>
+                    <div class="reveal group relative overflow-hidden rounded-xl border-glow aspect-square gallery-img" style="transition-delay: 0.3s; background-image: url('images/falafel_plate.png');">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 flex items-end p-4">
+                            <span class="text-lg uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-500">Falafel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Google Reviews Section -->
+        <section id="reviews" class="relative py-24 px-6">
+            <div class="mx-auto max-w-5xl">
+                <div class="text-center mb-14 reveal">
+                    <h2 class="text-5xl md:text-7xl">CO ŘÍKAJÍ <span class="text-gradient-neon">ZÁKAZNÍCI</span></h2>
+                    <div class="neon-line mt-5 mx-auto w-32"></div>
+                    <div class="mt-8 inline-flex items-center gap-4 bg-[#140d0c] border border-[#2a1a18] px-8 py-4 rounded-full">
+                        <span class="text-5xl font-bold text-gradient-neon">4.9</span>
+                        <div class="text-left">
+                            <div class="flex gap-1 text-[#ff8c42] text-xl">★★★★★</div>
+                            <p class="text-sm text-[#a89a96]">Hodnocení na Google Maps</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="reveal bg-[#140d0c] border border-[#2a1a18] p-8 rounded-xl hover:border-[#e8412a]/60 transition-all duration-500">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center font-bold text-[#e8412a] text-xl">G</div>
+                            <div>
+                                <p class="font-bold">Petr Novák</p>
+                                <div class="flex gap-1 text-[#ff8c42] text-sm">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-[#a89a96] mb-2">"Nejlepší kebab v okolí! Maso je vždy čerstvé, šťavnaté a omáčky jsou prostě výborné. Chodíme sem pravidelně už roky."</p>
+                    </div>
+                    <div class="reveal bg-[#140d0c] border border-[#2a1a18] p-8 rounded-xl hover:border-[#e8412a]/60 transition-all duration-500" style="transition-delay: 0.1s;">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center font-bold text-[#e8412a] text-xl">G</div>
+                            <div>
+                                <p class="font-bold">Jana Svobodová</p>
+                                <div class="flex gap-1 text-[#ff8c42] text-sm">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-[#a89a96] mb-2">"Skvělá atmosféra a milá obsluha. Dürüm je obrovský a poctivý nakrájený. Určitě sem budeme vracet!"</p>
+                    </div>
+                    <div class="reveal bg-[#140d0c] border border-[#2a1a18] p-8 rounded-xl hover:border-[#e8412a]/60 transition-all duration-500" style="transition-delay: 0.2s;">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center font-bold text-[#e8412a] text-xl">G</div>
+                            <div>
+                                <p class="font-bold">Klára Dvořáková</p>
+                                <div class="flex gap-1 text-[#ff8c42] text-sm">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-[#a89a96] mb-2">"Jako vegetariánka jsem nadšená z jejich falafelu. Je křupavý a vůbec není suchý. Místo, kam se opravdu ráda vracím!"</p>
+                    </div>
+                </div>
+                <div class="text-center mt-12 reveal">
+                    <a href="https://www.google.com/maps/place/Kebab+House+Kun%C5%A1t%C3%A1t/@49.5069965,16.5171469,17z/data=!4m6!3m5!1s0x47127d005747b541:0xb466f47d19efcb1a!8m2!3d49.5069965!4d16.5185826!16s%2Fg%2F11xz310vkf" target="_blank" rel="noreferrer" class="inline-flex items-center gap-3 px-8 py-3 rounded-full border-2 border-[#e8412a]/60 text-white font-semibold uppercase tracking-wider hover:border-[#e8412a] hover:glow-red transition-all duration-300">
+                        Zobrazit všechny recenze na Google 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="relative py-24 px-6 bg-black/30 border-y border-[#2a1a18]">
+            <div class="mx-auto max-w-3xl">
+                <div class="text-center mb-14 reveal">
+                    <h2 class="text-5xl md:text-7xl">ČASTÉ <span class="text-gradient-neon">DOTAZY</span></h2>
+                    <div class="neon-line mt-5 mx-auto w-32"></div>
+                </div>
+                <div class="space-y-4">
+                    <div class="faq-item reveal bg-[#140d0c] border border-[#2a1a18] rounded-xl px-6 py-4 cursor-pointer hover:border-[#e8412a]/60 transition-all">
+                        <div class="flex justify-between items-center py-2">
+                            <h4 class="text-xl uppercase tracking-wide">Máte vegetariánské možnosti?</h4>
+                            <span class="faq-icon text-2xl text-[#ff8c42]">+</span>
+                        </div>
+                        <div class="faq-answer text-[#a89a96]">
+                            Ano! Nabízíme vynikající talíř s falafelem a dürüm s falafelem. Vše je připraveno čerstvé bez jakýchkoliv živočišných přísad.
+                        </div>
+                    </div>
+                    <div class="faq-item reveal bg-[#140d0c] border border-[#2a1a18] rounded-xl px-6 py-4 cursor-pointer hover:border-[#e8412a]/60 transition-all">
+                        <div class="flex justify-between items-center py-2">
+                            <h4 class="text-xl uppercase tracking-wide">Jste otevřeni každý den?</h4>
+                            <span class="faq-icon text-2xl text-[#ff8c42]">+</span>
+                        </div>
+                        <div class="faq-answer text-[#a89a96]">
+                            Ano, jsme tu pro vás 7 dní v týdnu! Od pondělí do čtvrtka od 10:30 do 21:00, v pátek a sobotu do 22:00 a v neděli od 11:00 do 21:00.
+                        </div>
+                    </div>
+                    <div class="faq-item reveal bg-[#140d0c] border border-[#2a1a18] rounded-xl px-6 py-4 cursor-pointer hover:border-[#e8412a]/60 transition-all">
+                        <div class="flex justify-between items-center py-2">
+                            <h4 class="text-xl uppercase tracking-wide">Je u vás parkoviště?</h4>
+                            <span class="faq-icon text-2xl text-[#ff8c42]">+</span>
+                        </div>
+                        <div class="faq-answer text-[#a89a96]">
+                            Ano, nacházíme se přímo na Náměstí Míru, kde je k dispozici veřejné parkoviště zdarma. Můžete zaparkovat přímo před naší budovou.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reservation & Contact Section -->
+        <section id="reservation" class="relative py-24 px-6">
+            <div class="mx-auto max-w-7xl grid md:grid-cols-2 gap-12">
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-5xl mb-4">REZERVUJTE <span class="text-gradient-neon">STŮL</span></h2>
+                    <div class="neon-line w-32 mb-6"></div>
+                    <p class="text-[#a89a96] mb-8">Vyplňte formulář a my vás kontaktujeme pro potvrzení rezervace. Pro rychlejší obsluhu můžete volat přímo.</p>
+                    <form id="reservation-form" class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Jméno a příjmení" class="w-full bg-[#140d0c] border border-[#2a1a18] rounded-lg px-4 py-3 text-white focus:border-[#e8412a] outline-none transition-colors" required>
+                            <input type="tel" placeholder="Telefonní číslo" class="w-full bg-[#140d0c] border border-[#2a1a18] rounded-lg px-4 py-3 text-white focus:border-[#e8412a] outline-none transition-colors" required>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="date" class="w-full bg-[#140d0c] border border-[#2a1a18] rounded-lg px-4 py-3 text-white focus:border-[#e8412a] outline-none transition-colors" required>
+                            <select class="w-full bg-[#140d0c] border border-[#2a1a18] rounded-lg px-4 py-3 text-white focus:border-[#e8412a] outline-none transition-colors">
+                                <option>2 osoby</option>
+                                <option>3 osoby</option>
+                                <option>4 osoby</option>
+                                <option>5+ osob</option>
+                            </select>
+                        </div>
+                        <textarea placeholder="Poznámka (např. alergie, speciální přání)" rows="3" class="w-full bg-[#140d0c] border border-[#2a1a18] rounded-lg px-4 py-3 text-white focus:border-[#e8412a] outline-none transition-colors resize-none"></textarea>
+                        <button type="submit" class="w-full md:w-auto px-8 py-3 rounded-full bg-gradient-to-r from-[#e8412a] to-[#ff8c42] text-white font-semibold uppercase tracking-wider hover:scale-105 hover:glow-red transition-all duration-300">Odeslat poptávku</button>
+                        <p id="form-msg" class="text-[#ff8c42] hidden mt-4">Děkujeme! Brzy se vám ozveme.</p>
+                    </form>
+                </div>
+                
+                <div id="contact" class="reveal">
+                    <h2 class="text-4xl md:text-5xl mb-4">KDE NÁS <span class="text-gradient-neon">NAJDETE</span></h2>
+                    <div class="neon-line w-32 mb-6"></div>
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <span class="text-3xl text-[#ff8c42]">📍</span>
+                            <div>
+                                <p class="font-bold uppercase">Adresa</p>
+                                <p class="text-[#a89a96]">Náměstí Míru 27<br>679 72 Kunštát</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="text-3xl text-[#ff8c42]">🕒</span>
+                            <div>
+                                <p class="font-bold uppercase">Otevírací doba (7 dní v týdnu)</p>
+                                <p class="text-[#a89a96]">
+                                    Po–Čt 10:30 – 21:00<br>
+                                    Pá–So 10:30 – 22:00<br>
+                                    Ne 11:00 – 21:00
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="text-3xl text-[#ff8c42]">📞</span>
+                            <div>
+                                <p class="font-bold uppercase">Kontakt</p>
+                                <a href="tel:+420704696170" class="text-[#a89a96] hover:text-[#ff8c42] transition-colors">+420 704 696 170</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-xl overflow-hidden border-glow aspect-video mb-6">
+                        <iframe title="Mapa Kebab House Kunštát" src="https://www.google.com/maps?q=49.5069965,16.5185826&z=17&output=embed" class="w-full h-full grayscale-[0.4] contrast-125" loading="lazy"></iframe>
+                    </div>
+
+                    <a href="https://www.google.com/maps/place/Kebab+House+Kun%C5%A1t%C3%A1t/@49.5069965,16.5171469,17z/data=!4m6!3m5!1s0x47127d005747b541:0xb466f47d19efcb1a!8m2!3d49.5069965!4d16.5185826!16s%2Fg%2F11xz310vkf" target="_blank" rel="noreferrer" class="w-full flex items-center justify-center gap-2 px-8 py-3 rounded-full border-2 border-[#e8412a]/60 text-white font-semibold uppercase tracking-wider hover:border-[#e8412a] hover:glow-red transition-all duration-300">
+                        <span>🧭</span> Navigovat (Google Maps)
+                    </a>
+                </div>
+            </div>
+        </section>
+        </main>
+    </div>
+
+    <!-- DETAIL PAGES CONTAINER -->
+    <div id="detail-pages-container"></div>
+    
+    <!-- TEAM PAGE -->
+    <div id="page-team" class="page detail-page">
+        <section class="relative pt-32 pb-20 px-6 min-h-screen">
+            <div class="mx-auto max-w-5xl">
+                <button onclick="goHome(null, event)" class="mb-12 inline-flex items-center gap-2 text-[#ff8c42] hover:text-white transition-colors duration-300 uppercase tracking-wider text-sm">
+                    <span class="text-xl">←</span> Zpět na hlavní stránku
+                </button>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="reveal visible">
+                        <div class="aspect-[4/5] rounded-2xl overflow-hidden border-glow">
+                            <img src="images/team.png" alt="Náš tým Kebab House Kunštát" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="reveal visible">
+                        <h1 class="text-5xl md:text-6xl mb-4">NÁŠ <span class="text-gradient-neon">TÝM</span></h1>
+                        <div class="neon-line w-32 mb-6"></div>
+                        <p class="text-[#a89a96] text-lg leading-relaxed mb-6">Jsme parta nadšenců do skvělého jídla, která se stará o to, abyste od nás vždy odcházeli s úsměvem a plným břichem. Naše práce je naší vášní a na každé porci, kterou připravíme, je to znát.</p>
+                        <p class="text-[#a89a96] text-lg leading-relaxed">Každý den pro vás krájíme čerstvou zeleninu, pečeme čerstvý chléb a s úsměvem připravujeme ten nejlepší kebab v Kunštátě. Těšíme se na vaši návštěvu!</p>
+                        
+                        <div class="mt-8 p-6 bg-[#140d0c] border border-[#2a1a18] rounded-xl flex items-start gap-4">
+                            <span class="text-4xl">🔪</span>
+                            <div>
+                                <h4 class="text-xl text-white font-bold mb-1">Mistři svého řemesla</h4>
+                                <p class="text-[#a89a96] text-sm">Rychlost, přesnost a hlavně perfektní chuť. Známe každé tajemství dokonalého kebabu.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TERRACE PAGE -->
+    <div id="page-terrace" class="page detail-page">
+        <section class="relative pt-32 pb-20 px-6 min-h-screen">
+            <div class="mx-auto max-w-5xl">
+                <button onclick="goHome(null, event)" class="mb-12 inline-flex items-center gap-2 text-[#ff8c42] hover:text-white transition-colors duration-300 uppercase tracking-wider text-sm">
+                    <span class="text-xl">←</span> Zpět na hlavní stránku
+                </button>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="reveal visible order-2 md:order-1">
+                        <h1 class="text-5xl md:text-6xl mb-4">NAŠE <span class="text-gradient-neon">TERASA</span></h1>
+                        <div class="neon-line w-32 mb-6"></div>
+                        <p class="text-[#a89a96] text-lg leading-relaxed mb-6">Představte si vlahý letní podvečer, světla města se pomalu rozsvěcují a vy si vychutnáváte ten nejlepší, čerstvě upečený kebab přímo pod širým nebem. Naše útulná venkovní terasa je stvořena pro dokonalý relax.</p>
+                        <p class="text-[#a89a96] text-lg leading-relaxed">Obklopeni vůní grilovaného masa a s chladivým nápojem v ruce můžete zapomenout na starosti všedního dne. Dřevěné posezení a pečlivě vybraná výzdoba zaručují nezapomenutelnou atmosféru, ať už jste tu s přáteli, nebo si dáváte rychlý oběd.</p>
+                        
+                        <div class="mt-8 flex flex-col gap-4">
+                            <button onclick="goHome('menu', event)" class="w-full md:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-[#e8412a] to-[#ff8c42] text-white font-semibold uppercase tracking-wider hover:scale-105 hover:glow-red transition-all duration-300 text-center">
+                                Vybrat jídlo z Menu
+                            </button>
+                            <a href="tel:+420704696170" class="w-full md:w-auto px-8 py-4 rounded-full border-2 border-[#e8412a]/60 text-white font-semibold uppercase tracking-wider hover:border-[#e8412a] hover:glow-red transition-all duration-300 text-center flex items-center justify-center gap-3">
+                                <span>📞</span> Objednat hned
+                            </a>
+                        </div>
+                    </div>
+                    <div class="reveal visible order-1 md:order-2">
+                        <div class="aspect-[4/5] rounded-2xl overflow-hidden border-glow relative bg-[#140d0c]">
+                            <!-- Image Slider -->
+                            <img src="images/terrace1.jpg" onerror="this.src='images/terrace.png'" alt="Zahrádka Kebab House Kunštát" class="absolute inset-0 w-full h-full object-cover slide-1">
+                            <img src="images/terrace2.jpg" onerror="this.src='images/terrace.png'" alt="Zahrádka Kebab House Kunštát" class="absolute inset-0 w-full h-full object-cover slide-2">
+                            <img src="images/terrace3.jpg" onerror="this.src='images/terrace.png'" alt="Zahrádka Kebab House Kunštát" class="absolute inset-0 w-full h-full object-cover slide-3">
+                            
+                            <!-- Dark vignette for better text/sparks contrast -->
+                            <div class="absolute inset-0 bg-black/20 pointer-events-none"></div>
+
+                            <!-- Flying Sparks Overlay -->
+                            <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+                                <div class="spark w-2 h-2 left-[10%]" style="animation: float-up 4s ease-in infinite 0.5s;"></div>
+                                <div class="spark w-1.5 h-1.5 left-[30%]" style="animation: float-up 5s ease-in infinite 1.2s;"></div>
+                                <div class="spark w-3 h-3 left-[50%]" style="animation: float-up 3.5s ease-in infinite 0.1s;"></div>
+                                <div class="spark w-2 h-2 left-[70%]" style="animation: float-up 6s ease-in infinite 2.5s;"></div>
+                                <div class="spark w-1 h-1 left-[85%]" style="animation: float-up 4.5s ease-in infinite 0.8s;"></div>
+                                <div class="spark w-2.5 h-2.5 left-[20%]" style="animation: float-up 5.5s ease-in infinite 3.1s;"></div>
+                                <div class="spark w-1.5 h-1.5 left-[60%]" style="animation: float-up 4.2s ease-in infinite 1.7s;"></div>
+                                <div class="spark w-2 h-2 left-[90%]" style="animation: float-up 3.8s ease-in infinite 0.3s;"></div>
+                                <div class="spark w-1.5 h-1.5 left-[40%]" style="animation: float-up 4.8s ease-in infinite 2.1s;"></div>
+                                <div class="spark w-2 h-2 left-[75%]" style="animation: float-up 3.2s ease-in infinite 1.5s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative border-t border-[#2a1a18]/60 py-12 px-6 mt-12">
+        <div class="mx-auto max-w-7xl grid md:grid-cols-3 gap-8 items-center">
+            <div class="flex items-center gap-2 justify-center md:justify-start">
+                <span class="text-2xl">🔥</span>
+                <span class="font-display text-xl tracking-widest text-glow-red">KEBAB HOUSE KUNŠTÁT</span>
+            </div>
+            <div class="flex justify-center gap-6">
+                <a href="#" class="text-3xl hover:text-[#ff8c42] transition-colors">📘</a>
+                <a href="#" class="text-3xl hover:text-[#ff8c42] transition-colors">📷</a>
+                <a href="https://www.google.com/maps/place/Kebab+House+Kun%C5%A1t%C3%A1t/@49.5069965,16.5171469,17z/data=!4m6!3m5!1s0x47127d005747b541:0xb466f47d19efcb1a!8m2!3d49.5069965!4d16.5185826!16s%2Fg%2F11xz310vkf" target="_blank" class="text-3xl hover:text-[#ff8c42] transition-colors">📍</a>
+            </div>
+            <p class="text-xs text-[#a89a96] uppercase tracking-widest text-center md:text-right">
+                © <script>document.write(new Date().getFullYear())</script> František Burian. Všechna práva vyhrazena.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Drawer Logic ---
+        function toggleDrawer() {
+            document.getElementById('side-drawer').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('hidden');
+        }
+
+        // --- SPA Routing Logic (Fixed event prevention) ---
+        function navigateTo(pageId, event) {
+            if(event) event.preventDefault(); // Запобігає стандартному стрибку якоря
+            toggleDrawer(); // Close menu if open
+            document.getElementById('main-page').classList.remove('active');
+            document.querySelectorAll('.detail-page').forEach(p => p.classList.remove('active'));
+            
+            const page = document.getElementById(pageId);
+            if(page) {
+                page.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function goHome(hash = null, event) {
+            if(event) event.preventDefault(); // Запобігає стандартному стрибку якоря
+            toggleDrawer(); // Close menu if open
+            document.querySelectorAll('.detail-page').forEach(p => p.classList.remove('active'));
+            document.getElementById('main-page').classList.add('active');
+            
+            if(hash) {
+                setTimeout(() => {
+                    const el = document.getElementById(hash);
+                    if(el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // --- Scroll Reveal Logic ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        // --- Menu Data with Details ---
+        const menuData = [
+            {
+                slug: "salat",
+                title: "Salát",
+                img: "images/kebab_salad.png",
+                longDesc: "Pro ty, kteří hledají lehčí variantu nebo se zdravě stravují, nabízíme čerstvé misky salátů. Základem je vždy křupavý ledový salát, čerstvá zelenina, rajčata, okurky a naše tajné dresinky. Můžete si vybrat verzi s grilovaným kuřecím masem nebo čistě vegetariánskou.",
+                items: [
+                    { n: 1, name: "Míchaný salát", desc: "čerstvá zelenina, dresink", price: 90 },
+                    { n: 2, name: "Salát s masem", desc: "kuřecí maso, zelenina, dresink", price: 140 }
+                ]
+            },
+            {
+                slug: "turecky-chleba",
+                title: "Turecký chleba",
+                img: "images/turkish_bread_doner.png",
+                longDesc: "Naše klasika. Čerstvě upečený turecký chléb, který je zvenku křupavý a uvnitř měkký. Plníme ho šťavnatým masem z rožně, velkou porcí čerstvé zeleniny a našimi domácími omáčkami. Správný döner kebab musí mít pevný základ, a ten náš je nejlepší ve městě.",
+                items: [
+                    { n: 3, name: "Döner kebab klasik", desc: "maso, salát a omáčka v tureckém chlebě", price: 140 },
+                    { n: 4, name: "Döner kebab se sýrem", desc: "maso, salát, omáčka a sýr", price: 150 },
+                    { n: 5, name: "Döner kebab jen maso", desc: "maso s omáčkou v tureckém chlebě", price: 160 }
+                ]
+            },
+            {
+                slug: "tortilla-durum",
+                title: "Tortilla Dürüm",
+                img: "images/durum_wrap.png",
+                longDesc: "Dürüm je ideální volbou pro jídlo na cesty. Tenký list těsta (lavaş) je opečený na plotně, aby byl dokonale křupavý. Dovnitř zabalíme maso, hromadu salátu a omáčky. Díky svému tvaru se snadno drží a nedrobí.",
+                items: [
+                    { n: 6, name: "Dürüm kebab klasik", desc: "maso, salát a omáčka v tortille", price: 145 },
+                    { n: 7, name: "Dürüm kebab se sýrem", desc: "maso, salát, omáčka a sýr v tortille", price: 160 },
+                    { n: 8, name: "Dürüm kebab jen maso", desc: "maso s omáčkou v tortille", price: 165 }
+                ]
+            },
+            {
+                slug: "maly-talir",
+                title: "Malý talíř",
+                img: "images/maly_talir.png",
+                longDesc: "Máte menší hlad, ale chcete si přijít na své? Malý talíř obsahuje poctivou porci masa z rožně, kterou si můžete zvolit s přílohou. Ideální kombinace chutí, která vás zasytí, ale nepřetíží žaludek.",
+                items: [
+                    { n: 9, name: "Malý talíř s chlebem", price: 165 },
+                    { n: 10, name: "Malý talíř s hranolkami", price: 165 },
+                    { n: 11, name: "Malý talíř s nudlemi", price: 165 },
+                    { n: 12, name: "Malý talíř jen maso", price: 170 }
+                ]
+            },
+            {
+                slug: "velky-talir",
+                title: "Velký talíř",
+                img: "images/velky_talir.png",
+                longDesc: "Pro velké hladovce a milovníky poctivého jídla. Velký talíř nabízí obrovskou porci našeho nejlepšího masa, velkou porci přílohy a čerstvý salát. Pokud máte pořádný hlad, tohle je přesně to, co potřebujete.",
+                items: [
+                    { n: 13, name: "Velký talíř s chlebem", price: 185 },
+                    { n: 14, name: "Velký talíř s hranolkami", price: 185 },
+                    { n: 15, name: "Velký talíř s nudlemi", price: 185 },
+                    { n: 16, name: "Velký talíř jen maso", price: 200 }
+                ]
+            },
+            {
+                slug: "doner-box",
+                title: "Döner box",
+                img: "images/doner_box.png",
+                longDesc: "Jídlo v krabičce, které se snadno jí i za pochodu. Döner box obsahuje vrstvu příloh, na kterou přijde velká porce masa, a to vše je přelité omáčkou a posypané salátem. Rychlé, výdatné a nekřupavé (nedrobí).",
+                items: [
+                    { n: 17, name: "Döner box s hranolkami", desc: "maso, hranolky, salát, omáčka", price: 140 },
+                    { n: 18, name: "Döner box s nudlemi", desc: "maso, nudle, salát, omáčka", price: 140 }
+                ]
+            },
+            {
+                slug: "vegetarianske",
+                title: "Vegetariánské",
+                img: "images/falafel_plate.png",
+                longDesc: "Vegetariánský ráj! Naše falafelové kuličky jsou vyráběny z poctivého cizrnového těsta s přídavkem bylinek a koření. Jsou zvenku krásně křupavé a uvnitř měkké. Nabízíme je v tortille nebo jako talíř s přílohou.",
+                items: [
+                    { n: 19, name: "Talíř falafel", desc: "hrachové kuličky, salát, omáčka", price: 150 },
+                    { n: 20, name: "Dürüm falafel", desc: "kuličky, salát, omáčka v tortille", price: 140 },
+                    { n: 21, name: "Hranolky", price: 80 }
+                ]
+            },
+            {
+                slug: "stripsy",
+                title: "Stripsy",
+                img: "images/chicken_strips.png",
+                longDesc: "Křupavé obalované kousky kuřecího masa, které milují děti i dospělí. Naše stripsy jsou vždy čerstvé, smažené na oleji a podávané s chutnými omáčkami. Skvělá alternativa, pokud zrovna nemáte na maso z rožně.",
+                items: [
+                    { n: 22, name: "Stripsy v tortille", desc: "3 ks stripsy, salát, omáčka", price: 140 },
+                    { n: 23, name: "Velký talíř stripsy", desc: "4 ks stripsy, salát, hranolky", price: 190 }
+                ]
+            }
+        ];
+
+        // --- Render Flip Cards (Menu Grid) ---
+        const menuContent = document.getElementById('menu-content');
+        
+        function renderMenuCards() {
+            menuContent.innerHTML = '';
+            menuData.forEach((category, index) => {
+                let itemsHtml = '';
+                category.items.forEach(it => {
+                    itemsHtml += `
+                        <li class="flex justify-between items-baseline gap-3 border-b border-[#2a1a18]/50 pb-2 mb-2">
+                            <span class="font-medium text-left">
+                                <span class="text-[#ff8c42] mr-2">${it.n}.</span>${it.name}
+                                ${it.desc ? `<span class="block text-xs text-[#a89a96] mt-1 ml-7">${it.desc}</span>` : ''}
+                            </span>
+                            <span class="text-[#ff8c42] font-bold whitespace-nowrap">${it.price},-</span>
+                        </li>
+                    `;
+                });
+
+                const card = document.createElement('div');
+                card.className = 'reveal flip-card border-glow rounded-xl';
+                card.style.transitionDelay = `${(index % 3) * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="${category.img}" alt="${category.title} Kebab House Kunštát" class="menu-bg-img">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0a0606] via-[#0a0606]/50 to-transparent"></div>
+                            <div class="absolute inset-0 flex flex-col justify-end p-6 text-left">
+                                <div class="neon-line w-12 mb-3"></div>
+                                <h3 class="text-3xl uppercase tracking-wide text-glow-red">${category.title}</h3>
+                                <p class="mt-2 text-xs uppercase tracking-widest text-[#ff8c42] flex items-center gap-2">
+                                    Otočit kartičku <span class="text-lg">→</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flip-card-back text-left">
+                            <h3 class="text-2xl uppercase tracking-wide text-gradient-neon">${category.title}</h3>
+                            <div class="neon-line w-16 my-3"></div>
+                            <ul class="flex-grow overflow-y-auto pr-2">${itemsHtml}</ul>
+                            <button onclick="navigateTo('page-${category.slug}')" class="mt-4 w-full px-6 py-2 rounded-full border border-[#ff8c42]/60 text-white text-sm uppercase tracking-wider hover:bg-[#e8412a]/20 transition-all">
+                                Detail kategorie →
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                menuContent.appendChild(card);
+            });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // --- Render Detail Pages ---
+        const detailContainer = document.getElementById('detail-pages-container');
+
+        function renderDetailPages() {
+            menuData.forEach(category => {
+                let itemsHtml = '';
+                category.items.forEach(it => {
+                    itemsHtml += `
+                        <li class="flex justify-between items-baseline gap-3 border-b border-[#2a1a18]/50 pb-4 mb-4">
+                            <span class="font-medium text-left text-lg">
+                                <span class="text-[#ff8c42] mr-2">${it.n}.</span>${it.name}
+                                ${it.desc ? `<span class="block text-sm text-[#a89a96] mt-1 ml-7">${it.desc}</span>` : ''}
+                            </span>
+                            <span class="text-[#ff8c42] font-bold whitespace-nowrap text-xl">${it.price},- Kč</span>
+                        </li>
+                    `;
+                });
+
+                const page = document.createElement('div');
+                page.id = `page-${category.slug}`;
+                page.className = 'page detail-page';
+                page.innerHTML = `
+                    <section class="relative pt-32 pb-20 px-6 min-h-screen">
+                        <div class="mx-auto max-w-5xl">
+                            <button onclick="goHome('menu')" class="mb-12 inline-flex items-center gap-2 text-[#ff8c42] hover:text-white transition-colors duration-300 uppercase tracking-wider text-sm">
+                                <span class="text-xl">←</span> Zpět na menu
+                            </button>
+                            
+                            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                                <div class="reveal visible">
+                                    <div class="aspect-[4/3] rounded-2xl overflow-hidden border-glow">
+                                        <img src="${category.img}" alt="${category.title}" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <div class="reveal visible">
+                                    <h1 class="text-5xl md:text-6xl mb-4">${category.title}</h1>
+                                    <div class="neon-line w-32 mb-6"></div>
+                                    <p class="text-[#a89a96] text-lg leading-relaxed">${category.longDesc}</p>
+                                </div>
+                            </div>
+
+                            <div class="reveal visible bg-[#140d0c] border border-[#2a1a18] rounded-xl p-8 md:p-12">
+                                <h2 class="text-3xl uppercase tracking-wide text-gradient-neon mb-6">Ceník</h2>
+                                <ul>${itemsHtml}</ul>
+                            </div>
+
+                            <div class="text-center mt-16">
+                                <a href="#reservation" onclick="goHome('reservation', event)" class="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-[#e8412a] to-[#ff8c42] text-white font-semibold uppercase tracking-wider hover:scale-105 hover:glow-red transition-all duration-300">
+                                    Rezervovat stůl
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                `;
+                detailContainer.appendChild(page);
+            });
+        }
+
+        // Initialize
+        renderMenuCards();
+        renderDetailPages();
+
+        // --- FAQ Accordion Logic ---
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => item.classList.toggle('active'));
+        });
+
+        // --- Form Logic ---
+        document.getElementById('reservation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('form-msg').classList.remove('hidden');
+            this.reset();
+            setTimeout(() => document.getElementById('form-msg').classList.add('hidden'), 5000);
+        });
+    </script>
+</body>
+</html>
