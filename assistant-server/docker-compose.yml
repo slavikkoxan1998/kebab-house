@@ -1,0 +1,9 @@
+services:
+  kebab-assistant:
+    build:
+      context: ..
+      dockerfile: assistant-server/Dockerfile
+    container_name: kebab_house_assistant
+    restart: unless-stopped
+    ports:
+      - "8790:8790"

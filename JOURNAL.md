@@ -12,3 +12,20 @@
 - Перевірено наскрізно через Playwright: повна розмова (2× döner kebab klasik + malý talíř s hranolky, без соусу) → бот порахував суму правильно (445 Kč), запитав ім'я і час, дав фінальне зведення.
 - Запуск сервера: `cd assistant-server && node server.js` (порт 8790) — **важливо запускати через інструментальний background-режим, не вручну через `nohup`/`disown`**, інакше лишається старий процес зі старим `.env`/кодом (той самий баг, що вже описаний у `cms/JOURNAL.md` для `dev:canvas`).
 - Поки що **лише локально**, нічого не запушено в GitHub — чекаю рішення користувача.
+
+## 2026-08-02 19:54
+
+Задеплоєно на GitHub Pages (`https://slavikkoxan1998.github.io/kebab-house/`),
+бекенд винесено на публічний шлях `https://n8n-accaisona.site/kebab-assistant/`
+(Caddy `handle_path` на `n8n-accaisona.site`, CORS дозволено, без basic_auth —
+має бути доступний будь-якому відвідувачу сайту).
+
+`assistant-server` двічі "сам собою" падав, коли був запущений як звичайний
+фоновий процес (навіть через інструментальний background-режим) — процес
+прив'язаний до життєвого циклу CLI-сесії, невідповідний для чогось, що має
+працювати постійно. **Перероблено на Docker-контейнер**
+(`assistant-server/Dockerfile` + `docker-compose.yml`, `restart:
+unless-stopped`, порт 8790 назовні) — той самий патерн, що й решта стека
+(wordpress, n8n тощо). Запуск: `cd assistant-server && docker compose up -d
+--build` (перебудовувати після кожної зміни `server.js`/сайту, бо `COPY .
+.` копіює на момент білда, не live-mount).
