@@ -286,8 +286,6 @@
 
     <!-- Side Drawer Menu -->
     <div id="overlay" class="fixed inset-0 bg-black/70 z-40 hidden" onclick="toggleDrawer()"></div>
-    <aside id="side-drawer" class="drawer fixed top-0 right-0 h-full w-full max-w-sm bg-[#0a0606] border-l border-[#2a1a18] z-50 overflow-y-auto">
-</aside>
 
     <!-- Cart Drawer -->
     <div id="cart-overlay" class="fixed inset-0 bg-black/70 z-40 hidden" onclick="toggleCart()"></div>
@@ -318,15 +316,15 @@
             <p class="text-center text-xs text-[#a89a96] mt-3">Мінімальне замовлення: 200 Kč</p>
         </div>
     </aside>
+    <aside id="side-drawer" class="drawer fixed top-0 right-0 h-full w-full max-w-sm bg-[#0a0606] border-l border-[#2a1a18] z-50 overflow-y-auto">
         <div class="p-8 pt-24">
-            <h3 class="font-display text-2xl text-[#ff8c42] tracking-widest mb-6 border-b border-[#2a1a18] pb-4">NAVIGACE</h3>
-            <nav class="flex flex-col gap-4 text-lg uppercase tracking-wider">
-                <a href="#" onclick="goHome(null, event)" class="hover:text-[#ff8c42] transition-colors font-bold text-[#ff8c42]">Domů</a>
-                <a href="#" onclick="goHome('about', event)" class="hover:text-[#ff8c42] transition-colors">O nás</a>
-                <a href="#" onclick="goHome('menu', event)" class="hover:text-[#ff8c42] transition-colors">Menu</a>
+            <nav class="flex flex-col gap-3 text-lg uppercase tracking-wider">
+                <a href="#" onclick="goHome(null, event); toggleDrawer()" class="hover:text-[#ff8c42] transition-colors font-bold text-[#ff8c42]">Domů</a>
+                <a href="#" onclick="goHome('about', event); toggleDrawer()" class="hover:text-[#ff8c42] transition-colors">O nás</a>
+                <a href="#" onclick="goHome('menu', event); toggleDrawer()" class="hover:text-[#ff8c42] transition-colors">Menu</a>
                 
                 <!-- Sub menu for Categories -->
-                <div class="pl-4 flex flex-col gap-3 text-base border-l border-[#2a1a18] ml-2">
+                <div class="pl-4 flex flex-col gap-2 text-base border-l border-[#2a1a18] ml-2">
                     <a href="#" onclick="navigateTo('page-salat', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Salát</a>
                     <a href="#" onclick="navigateTo('page-turecky-chleba', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Turecký chleba</a>
                     <a href="#" onclick="navigateTo('page-tortilla-durum', event)" class="text-[#a89a96] hover:text-[#ff8c42]">→ Tortilla Dürüm</a>
@@ -339,9 +337,9 @@
 
                 <a href="#" onclick="navigateTo('page-team', event)" class="hover:text-[#ff8c42] transition-colors mt-2">Náš tým</a>
                 <a href="#" onclick="navigateTo('page-terrace', event)" class="hover:text-[#ff8c42] transition-colors">Naše terasa</a>
-                <a href="#" onclick="goHome('reviews', event)" class="hover:text-[#ff8c42] transition-colors">Hodnocení</a>
-                <a href="#" onclick="goHome('contact', event)" class="hover:text-[#ff8c42] transition-colors">Kontakt</a>
-                <a href="#" onclick="goHome('reservation', event)" class="text-[#ff8c42] mt-2 text-xl">Rezervovat stůl</a>
+                <a href="#" onclick="goHome('reviews', event); toggleDrawer()" class="hover:text-[#ff8c42] transition-colors">Hodnocení</a>
+                <a href="#" onclick="goHome('contact', event); toggleDrawer()" class="hover:text-[#ff8c42] transition-colors">Kontakt</a>
+                <a href="#" onclick="goHome('reservation', event); toggleDrawer()" class="text-[#ff8c42] mt-2 text-xl">Rezervovat stůl</a>
             </nav>
         </div>
     </aside>
