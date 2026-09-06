@@ -229,6 +229,25 @@
         #burger-btn[aria-expanded="true"] [data-line="1"] { transform: rotate(45deg) translate(4px, 4px); }
         #burger-btn[aria-expanded="true"] [data-line="2"] { opacity: 0; }
         #burger-btn[aria-expanded="true"] [data-line="3"] { transform: rotate(-45deg) translate(4px, -4px); }
+
+        /* Cart Drawer */
+        .cart-drawer { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+        .cart-drawer.open { transform: translateX(0); }
+        .cart-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .cart-item-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+        .cart-item-info { flex: 1; min-width: 0; }
+        .cart-item-name { font-weight: 600; font-size: 14px; }
+        .cart-item-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+        .cart-item-price { font-size: 14px; color: var(--neon-ember); font-weight: 600; }
+        .cart-qty { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+        .cart-qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); background: var(--card); color: var(--text); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+        .cart-qty-btn:hover { border-color: var(--neon-red); background: var(--neon-red); }
+        .cart-qty-val { font-weight: 600; min-width: 24px; text-align: center; }
+        .cart-total { padding-top: 16px; border-top: 2px solid var(--border); margin-top: 8px; }
+        .cart-total-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .cart-total-final { font-size: 18px; font-weight: 700; color: var(--neon-ember); }
+        .cart-empty { text-align: center; padding: 40px 20px; color: var(--muted); }
+        .cart-badge { position: absolute; top: -8px; right: -8px; background: var(--neon-red); color: white; font-size: 11px; font-weight: 700; min-width: 18px; height: 18px; border-radius: 9px; display: flex; align-items: center; justify-content: center; padding: 0 4px; }
     </style>
 </head>
 <body class="relative">
@@ -249,6 +268,12 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                 </a>
 
+                <!-- Cart Button -->
+                <button id="cart-btn" class="relative p-2 z-50" onclick="toggleCart()" aria-label="Кошик" aria-expanded="false" aria-controls="cart-drawer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7 text-[#ff8c42] hover:text-white transition-colors"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span id="cart-badge" class="cart-badge hidden">0</span>
+                </button>
+
                 <!-- Burger Button -->
                 <button id="burger-btn" class="flex flex-col gap-1.5 p-2 z-50" onclick="toggleDrawer()" aria-label="Toggle menu" aria-expanded="false" aria-controls="side-drawer">
                     <span class="block w-8 h-0.5 bg-[#ff8c42] transition-all origin-center" data-line="1"></span>
@@ -262,6 +287,37 @@
     <!-- Side Drawer Menu -->
     <div id="overlay" class="fixed inset-0 bg-black/70 z-40 hidden" onclick="toggleDrawer()"></div>
     <aside id="side-drawer" class="drawer fixed top-0 right-0 h-full w-full max-w-sm bg-[#0a0606] border-l border-[#2a1a18] z-50 overflow-y-auto">
+</aside>
+
+    <!-- Cart Drawer -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/70 z-40 hidden" onclick="toggleCart()"></div>
+    <aside id="cart-drawer" class="cart-drawer fixed top-0 right-0 h-full w-full max-w-md bg-[#0a0606] border-l border-[#2a1a18] z-50 overflow-y-auto flex flex-col">
+        <div class="p-6 pt-20 border-b border-[#2a1a18] flex items-center justify-between">
+            <h3 class="font-display text-2xl text-[#ff8c42] tracking-widest">КОШИК</h3>
+            <button onclick="toggleCart()" class="text-[#a89a96] hover:text-white transition-colors text-2xl leading-none">&times;</button>
+        </div>
+        <div id="cart-items" class="flex-1 overflow-y-auto p-6"></div>
+        <div id="cart-footer" class="p-6 border-t border-[#2a1a18] hidden">
+            <div class="cart-total">
+                <div class="cart-total-row">
+                    <span>Разом</span>
+                    <span id="cart-subtotal" class="font-bold">0,- Kč</span>
+                </div>
+                <div class="cart-total-row">
+                    <span>Доставка</span>
+                    <span id="cart-delivery" class="font-bold">0,- Kč</span>
+                </div>
+                <div class="cart-total-row">
+                    <span class="cart-total-final">Загалом</span>
+                    <span id="cart-total" class="cart-total-final">0,- Kč</span>
+                </div>
+            </div>
+            <button id="cart-checkout" class="mt-6 w-full px-6 py-3 rounded-full bg-gradient-to-r from-[#e8412a] to-[#ff8c42] text-white font-semibold uppercase tracking-wider hover:scale-105 hover:glow-red transition-all duration-300">
+                Оформити замовлення
+            </button>
+            <p class="text-center text-xs text-[#a89a96] mt-3">Мінімальне замовлення: 200 Kč</p>
+        </div>
+    </aside>
         <div class="p-8 pt-24">
             <h3 class="font-display text-2xl text-[#ff8c42] tracking-widest mb-6 border-b border-[#2a1a18] pb-4">NAVIGACE</h3>
             <nav class="flex flex-col gap-4 text-lg uppercase tracking-wider">
@@ -835,7 +891,7 @@
             }
         ];
 
-        // --- Render Flip Cards (Menu Grid) ---
+// --- Render Flip Cards (Menu Grid) ---
         const menuContent = document.getElementById('menu-content');
         
         function renderMenuCards() {
@@ -844,12 +900,17 @@
                 let itemsHtml = '';
                 category.items.forEach(it => {
                     itemsHtml += `
-                        <li class="flex justify-between items-baseline gap-3 border-b border-[#2a1a18]/50 pb-2 mb-2">
-                            <span class="font-medium text-left">
-                                <span class="text-[#ff8c42] mr-2">${it.n}.</span>${it.name}
-                                ${it.desc ? `<span class="block text-xs text-[#a89a96] mt-1 ml-7">${it.desc}</span>` : ''}
-                            </span>
-                            <span class="text-[#ff8c42] font-bold whitespace-nowrap">${it.price},-</span>
+                        <li class="flex flex-col gap-2 border-b border-[#2a1a18]/50 pb-2 mb-2">
+                            <div class="flex justify-between items-baseline gap-3">
+                                <span class="font-medium text-left">
+                                    <span class="text-[#ff8c42] mr-2">${it.n}.</span>${it.name}
+                                    ${it.desc ? `<span class="block text-xs text-[#a89a96] mt-1 ml-7">${it.desc}</span>` : ''}
+                                </span>
+                                <span class="text-[#ff8c42] font-bold whitespace-nowrap">${it.price},-</span>
+                            </div>
+                            <button onclick="addToCart(${it.n})" class="w-full md:w-auto self-start px-4 py-1.5 text-xs rounded-full border border-[#ff8c42]/60 text-white uppercase tracking-wider hover:bg-[#e8412a]/20 transition-all">
+                                Додати в кошик
+                            </button>
                         </li>
                     `;
                 });
@@ -867,7 +928,7 @@
                                 <div class="neon-line w-12 mb-3"></div>
                                 <h3 class="text-3xl uppercase tracking-wide text-glow-red">${category.title}</h3>
                                 <p class="mt-2 text-xs uppercase tracking-widest text-[#ff8c42] flex items-center gap-2">
-                                    Otočit kartičku <span class="text-lg">→</span>
+                                    Оточити картку <span class="text-lg">→</span>
                                 </p>
                             </div>
                         </div>
@@ -876,7 +937,7 @@
                             <div class="neon-line w-16 my-3"></div>
                             <ul class="flex-grow overflow-y-auto pr-2">${itemsHtml}</ul>
                             <button onclick="navigateTo('page-${category.slug}')" class="mt-4 w-full px-6 py-2 rounded-full border border-[#ff8c42]/60 text-white text-sm uppercase tracking-wider hover:bg-[#e8412a]/20 transition-all">
-                                Detail kategorie →
+                                Детальніше →
                             </button>
                         </div>
                     </div>
@@ -895,12 +956,17 @@
                 let itemsHtml = '';
                 category.items.forEach(it => {
                     itemsHtml += `
-                        <li class="flex justify-between items-baseline gap-3 border-b border-[#2a1a18]/50 pb-4 mb-4">
-                            <span class="font-medium text-left text-lg">
+                        <li class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-3 border-b border-[#2a1a18]/50 pb-4 mb-4">
+                            <div class="font-medium text-left text-lg">
                                 <span class="text-[#ff8c42] mr-2">${it.n}.</span>${it.name}
                                 ${it.desc ? `<span class="block text-sm text-[#a89a96] mt-1 ml-7">${it.desc}</span>` : ''}
-                            </span>
-                            <span class="text-[#ff8c42] font-bold whitespace-nowrap text-xl">${it.price},- Kč</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="text-[#ff8c42] font-bold whitespace-nowrap text-xl">${it.price},- Kč</span>
+                                <button onclick="addToCart(${it.n})" class="px-4 py-2 rounded-full border border-[#ff8c42]/60 text-white text-sm uppercase tracking-wider hover:bg-[#e8412a]/20 transition-all">
+                                    Додати
+                                </button>
+                            </div>
                         </li>
                     `;
                 });
@@ -961,6 +1027,131 @@
             this.reset();
             setTimeout(() => document.getElementById('form-msg').classList.add('hidden'), 5000);
         });
+
+        // --- Cart Logic ---
+        const CART_KEY = 'kh-cart';
+        let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+
+        function saveCart() {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            updateCartBadge();
+            renderCart();
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cart-badge');
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            if (count > 0) {
+                badge.textContent = count > 99 ? '99+' : count;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function findMenuItem(itemId) {
+            for (const cat of menuData) {
+                const item = cat.items.find(i => i.n === itemId);
+                if (item) return { ...item, categoryImg: cat.img, categoryTitle: cat.title };
+            }
+            return null;
+        }
+
+        function addToCart(itemId) {
+            const menuItem = findMenuItem(itemId);
+            if (!menuItem) return;
+            
+            const existing = cart.find(i => i.id === itemId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ id: itemId, name: menuItem.name, price: menuItem.price, qty: 1, img: menuItem.categoryImg });
+            }
+            saveCart();
+            toggleCart(true);
+        }
+
+        function removeFromCart(itemId) {
+            cart = cart.filter(i => i.id !== itemId);
+            saveCart();
+        }
+
+        function updateQty(itemId, delta) {
+            const item = cart.find(i => i.id === itemId);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) removeFromCart(itemId);
+            else saveCart();
+        }
+
+        function getCartTotal() {
+            return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+        }
+
+        function renderCart() {
+            const itemsEl = document.getElementById('cart-items');
+            const footerEl = document.getElementById('cart-footer');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const deliveryEl = document.getElementById('cart-delivery');
+            const totalEl = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                itemsEl.innerHTML = '<div class="cart-empty">Кошик порожній<br><span class="text-xs mt-2 block">Додайте страви з меню</span></div>';
+                footerEl.classList.add('hidden');
+                return;
+            }
+            
+            footerEl.classList.remove('hidden');
+            itemsEl.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.img}" alt="${item.name}" class="cart-item-img" loading="lazy">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">${item.price},- Kč</div>
+                        <div class="cart-qty">
+                            <button class="cart-qty-btn" onclick="updateQty(${item.id}, -1)" aria-label="Зменшити">−</button>
+                            <span class="cart-qty-val">${item.qty}</span>
+                            <button class="cart-qty-btn" onclick="updateQty(${item.id}, 1)" aria-label="Збільшити">+</button>
+                            <button class="cart-qty-btn ml-2 text-red-500 hover:bg-red-500" onclick="removeFromCart(${item.id})" aria-label="Видалити">🗑</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            const subtotal = getCartTotal();
+            const delivery = subtotal >= 200 ? 0 : 39;
+            subtotalEl.textContent = `${subtotal},- Kč`;
+            deliveryEl.textContent = delivery === 0 ? 'Безкоштовно' : `${delivery},- Kč`;
+            totalEl.textContent = `${subtotal + delivery},- Kč`;
+        }
+
+        function toggleCart(forceOpen) {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            const btn = document.getElementById('cart-btn');
+            const isOpen = drawer.classList.toggle('open');
+            overlay.classList.toggle('hidden');
+            btn.setAttribute('aria-expanded', isOpen);
+            if (isOpen || forceOpen) renderCart();
+        }
+
+        // Checkout handler
+        document.getElementById('cart-checkout').addEventListener('click', () => {
+            if (cart.length === 0) return;
+            const total = getCartTotal();
+            if (total < 200) {
+                alert('Мінімальне замовлення: 200 Kč');
+                return;
+            }
+            // Here you would integrate with your ordering system
+            alert(`Замовлення на ${total},- Kč прийняте! Ми скоро з вами зв'яжемося.`);
+            cart = [];
+            saveCart();
+            toggleCart(false);
+        });
+
+        // Initialize cart badge
+        updateCartBadge();
     </script>
 
     <!-- AI Objednávkový Asistent -->
