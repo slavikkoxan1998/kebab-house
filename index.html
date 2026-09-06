@@ -224,6 +224,11 @@
         /* Side Menu Drawer */
         .drawer { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
         .drawer.open { transform: translateX(0); }
+
+        /* Burger Animation */
+        #burger-btn[aria-expanded="true"] [data-line="1"] { transform: rotate(45deg) translate(4px, 4px); }
+        #burger-btn[aria-expanded="true"] [data-line="2"] { opacity: 0; }
+        #burger-btn[aria-expanded="true"] [data-line="3"] { transform: rotate(-45deg) translate(4px, -4px); }
     </style>
 </head>
 <body class="relative">
@@ -245,10 +250,10 @@
                 </a>
 
                 <!-- Burger Button -->
-                <button id="burger-btn" class="flex flex-col gap-1.5 p-2 z-50" onclick="toggleDrawer()">
-                    <span class="block w-8 h-0.5 bg-[#ff8c42] transition-all"></span>
-                    <span class="block w-8 h-0.5 bg-[#ff8c42] transition-all"></span>
-                    <span class="block w-8 h-0.5 bg-[#ff8c42] transition-all"></span>
+                <button id="burger-btn" class="flex flex-col gap-1.5 p-2 z-50" onclick="toggleDrawer()" aria-label="Toggle menu" aria-expanded="false" aria-controls="side-drawer">
+                    <span class="block w-8 h-0.5 bg-[#ff8c42] transition-all origin-center" data-line="1"></span>
+                    <span class="block w-8 h-0.5 bg-[#ff8c42] transition-all origin-center" data-line="2"></span>
+                    <span class="block w-8 h-0.5 bg-[#ff8c42] transition-all origin-center" data-line="3"></span>
                 </button>
             </div>
         </div>
@@ -694,8 +699,12 @@
     <script>
         // --- Drawer Logic ---
         function toggleDrawer() {
-            document.getElementById('side-drawer').classList.toggle('open');
-            document.getElementById('overlay').classList.toggle('hidden');
+            const drawer = document.getElementById('side-drawer');
+            const overlay = document.getElementById('overlay');
+            const burgerBtn = document.getElementById('burger-btn');
+            const isOpen = drawer.classList.toggle('open');
+            overlay.classList.toggle('hidden');
+            burgerBtn.setAttribute('aria-expanded', isOpen);
         }
 
         // --- SPA Routing Logic (Fixed event prevention) ---
