@@ -111,10 +111,84 @@ const MIME = {
   '.js': 'text/javascript',
 };
 
-const server = createServer(async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+const ALLOWED_ORIGINS = [
+  'https://n8n-accaisona.site',
+  'https://wordpress.n8n-accaisona.site',
+  'https://kebab-assistant.n8n-accaisona.site',
+  'http://localhost:8790',
+  'http://127.0.0.1:8790',
+];
+
+function setCorsHeaders(req, res) {
+  const origin = req.headers['origin'];
+  if (!origin) {
+    res.setHeader('Access-Control-Allow-Origin', 'https://n8n-accaisona.site');
+  } else if (ALLOWED_ORIGINS.includes(origin) || origin.endsWith('.n8n-accaisona.site')) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', 'https://n8n-accaisona.site');
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+}
+
+const rateLimits = new Map();
+
+function isRateLimited(ip, maxRequests = 20, windowMs = 60000) {
+  const now = Date.now();
+  const record = rateLimits.get(ip);
+  if (!record || now > record.resetTime) {
+    rateLimits.set(ip, { count: 1, resetTime: now + windowMs });
+    return false;
+  }
+  record.count++;
+  return record.count > maxRequests;
+}
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, record] of rateLimits.entries()) {
+    if (now > record.resetTime) rateLimits.delete(ip);
+  }
+}, 300000);
+
+function readJsonBody(req, maxSize = 65536) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    let size = 0;
+    req.on('data', (chunk) => {
+      size += chunk.length;
+      if (size > maxSize) {
+        req.destroy();
+        reject(new Error('PAYLOAD_TOO_LARGE'));
+        return;
+      }
+      body += chunk;
+    });
+    req.on('end', () => {
+      try {
+        resolve(body ? JSON.parse(body) : {});
+      } catch {
+        reject(new Error('INVALID_JSON'));
+      }
+    });
+    req.on('error', reject);
+  });
+}
+
+function validateMessages(messages) {
+  if (!Array.isArray(messages) || messages.length === 0 || messages.length > 30) return false;
+  for (const m of messages) {
+    if (!m || typeof m !== 'object') return false;
+    if (typeof m.role !== 'string' || !['user', 'assistant', 'model'].includes(m.role)) return false;
+    if (typeof m.content !== 'string' || m.content.length > 3000) return false;
+  }
+  return true;
+}
+
+const server = createServer(async (req, res) => {
+  setCorsHeaders(req, res);
 
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
@@ -122,21 +196,30 @@ const server = createServer(async (req, res) => {
     return;
   }
 
+  const clientIp = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket.remoteAddress || 'unknown';
+
   if (req.method === 'POST' && req.url === '/chat') {
-    let body = '';
-    req.on('data', (chunk) => (body += chunk));
-    req.on('end', async () => {
-      try {
-        const { messages } = JSON.parse(body);
-        const reply = await callGemini(messages);
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ reply }));
-      } catch (err) {
-        console.error(err);
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: String(err) }));
+    if (isRateLimited(clientIp + ':chat', 20, 60000)) {
+      res.writeHead(429, { 'Content-Type': 'application/json', 'Retry-After': '60' });
+      res.end(JSON.stringify({ error: 'Příliš mnoho požadavků. Zkuste to prosím za chvíli.' }));
+      return;
+    }
+
+    try {
+      const { messages } = await readJsonBody(req, 65536);
+      if (!validateMessages(messages)) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Neplatná struktura zpráv.' }));
+        return;
       }
-    });
+      const reply = await callGemini(messages);
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ reply }));
+    } catch (err) {
+      console.error('[KebabHouse Chat Error]:', err);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Omlouváme se, došlo k chybě na serveru.' }));
+    }
     return;
   }
 

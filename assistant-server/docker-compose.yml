@@ -6,4 +6,4 @@ services:
     container_name: kebab_house_assistant
     restart: unless-stopped
     ports:
-      - "8790:8790"
+      - "172.17.0.1:8790:8790"
